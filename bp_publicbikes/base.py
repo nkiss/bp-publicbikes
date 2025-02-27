@@ -1,17 +1,11 @@
-"""
-bp_publicbikes base module.
+from bp_publicbikes import logger
 
-This is the principal module of the bp_publicbikes project.
-here you put your main classes and objects.
+import datetime
 
-Be creative! do whatever you want!
+class Base:
 
-If you want to replace this with a Flask application run:
+    def __init__(self):
+        self.logger = logger.StandardLogger().get_logger()       
 
-    $ make init
-
-and then choose `flask` as template.
-"""
-
-# example constant variable
-NAME = "bp_publicbikes"
+    def _get_datetime_as_str(self) -> str:
+        return datetime.datetime.now().strftime("%Y%m%d_%H%M%S")

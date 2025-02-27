@@ -1,28 +1,14 @@
-"""CLI interface for bp_publicbikes project.
+import bp_publicbikes.constants as constants
+from bp_publicbikes.logger import StandardLogger
 
-Be creative! do whatever you want!
-
-- Install click or typer and create a CLI app
-- Use builtin argparse
-- Start a web application
-- Import things from your .base module
-"""
+from bp_publicbikes.weather import Weather
+from bp_publicbikes.publicbikes import Citybike
 
 
-def main():  # pragma: no cover
-    """
-    The main function executes on commands:
-    `python -m bp_publicbikes` and `$ bp_publicbikes `.
-
-    This is your program's entry point.
-
-    You can change this function to do whatever you want.
-    Examples:
-        * Run a test suite
-        * Run a server
-        * Do some other stuff
-        * Run a command line application (Click, Typer, ArgParse)
-        * List all available tasks
-        * Run an application (Flask, FastAPI, Django, etc.)
-    """
-    print("This will do something")
+def main():
+    logger = StandardLogger().get_logger()
+    
+    logger.info(f"Start {constants.NAME}")
+    Weather().weather_data()
+    Citybike().citybikes_data()
+    logger.info(f"End {constants.NAME}")
